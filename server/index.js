@@ -6,3 +6,7 @@ const { v4: uuidv4 } = require('uuid');
 const logger = require('./logger');
 const errorHandler = require('./errorHandler');
 const validateTask = require('./validateTask');
+
+const app = express();
+const PORT = 3000;
+const TASKS_FILE = path.join(__dirname, 'tasks.json');
