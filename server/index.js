@@ -24,3 +24,23 @@ app.get('/tasks', async (req, res, next) => {
     next(err);
   }
 });
+
+app.post('/tasks', validateTask, async (req, res, next) => {
+  try {
+    const newTask = {
+      id: uuidv4(),
+      title: req.body.title.trim(),
+      description: req.body.description ? req.body.description.trim() : '',
+      status: req.body.status,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+
+    const tasks = await readTasks();
+    tasks.push(newTask);
+    await writeTasks(tasks);
+    res.status(201).json(newTask);
+  } catch (err) {
+    next(err);
+  }
+});
