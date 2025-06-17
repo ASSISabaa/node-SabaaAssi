@@ -57,3 +57,5 @@ async function readTasks() {
 async function writeTasks(tasks) {
   await fs.writeFile(TASKS_FILE, JSON.stringify(tasks, null, 2));
 }
+
+app.use(errorHandler);
