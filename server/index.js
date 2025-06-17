@@ -44,3 +44,16 @@ app.post('/tasks', validateTask, async (req, res, next) => {
     next(err);
   }
 });
+
+async function readTasks() {
+  try {
+    const data = await fs.readFile(TASKS_FILE, 'utf8');
+    return JSON.parse(data);
+  } catch (err) {
+    return [];
+  }
+}
+
+async function writeTasks(tasks) {
+  await fs.writeFile(TASKS_FILE, JSON.stringify(tasks, null, 2));
+}
