@@ -10,3 +10,7 @@ const validateTask = require('./validateTask');
 const app = express();
 const PORT = 3000;
 const TASKS_FILE = path.join(__dirname, 'tasks.json');
+
+app.use(cors());
+app.use(express.json());
+app.use(logger);
